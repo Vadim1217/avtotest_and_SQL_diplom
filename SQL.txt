@@ -1,0 +1,21 @@
+﻿ЗАДАНИЕ 1
+
+
+SELECT C.login, COUNT(*) AS "inDelivery"
+FROM "Couriers" AS C 
+JOIN "Orders" AS O ON C.id=O."courierId" 
+WHERE O."inDelivery" = true 
+GROUP BY C.login;
+
+
+ЗАДАНИЕ 2
+
+
+SELECT track,
+    CASE
+        WHEN finished = true THEN 2
+        WHEN cancelled = true THEN -1
+        WHEN "inDelivery" = true THEN 1
+        ELSE 0
+    END AS status
+FROM "Orders";
